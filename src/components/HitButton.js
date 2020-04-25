@@ -6,15 +6,15 @@ const HitButton = () => {
     const check = (hitDeck, curDeck) => {
         return true;
     }
-    const hit = () => {
+    const hit = async() => {
         const pos = playerDeck.pos;
         const curDeck = playerDeck.curDeck;
         const Deck = playerDeck.Deck.filter((e, i) => pos[i] === 0);
         const hitDeck = playerDeck.Deck.filter((e, i) => pos[i] !== 0);
         if (check(hitDeck,curDeck)){
+        while(playerDeck.pos.length!==Deck.length) {playerDeck.setPos(Array(Deck.length).fill(0));}
         playerDeck.setDeck(Deck);
         playerDeck.setCurDeck(hitDeck);
-        playerDeck.setPos(pos.filter(e => e === 0));
         }
         else {
             alert("Đánh bài không hợp lệ!");

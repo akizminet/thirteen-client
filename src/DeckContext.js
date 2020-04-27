@@ -6,6 +6,7 @@ export const DeckProvider = ({children}) => {
     const [Deck, setDeck] = useState(Array(0));
     const [curDeck, setCurDeck] = useState(Array(0));
     const [pos, setPos] = useState(()=>{let temp = new Array(Deck.length); temp.fill(0); return temp;});
+    const [playable, setPlayable] = useState(false);
     return (
         <DeckContext.Provider value={{
             Deck,
@@ -13,7 +14,9 @@ export const DeckProvider = ({children}) => {
             curDeck,
             setCurDeck,
             pos,
-            setPos
+            setPos,
+            playable,
+            setPlayable
         }}>
             {children}
         </DeckContext.Provider>

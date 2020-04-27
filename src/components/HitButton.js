@@ -6,24 +6,32 @@ const HitButton = () => {
     const check = (hitDeck, curDeck) => {
         return true;
     }
-    const hit = async() => {
-        const pos = playerDeck.pos;
-        const curDeck = playerDeck.curDeck;
-        const Deck = playerDeck.Deck.filter((e, i) => pos[i] === 0);
-        const hitDeck = playerDeck.Deck.filter((e, i) => pos[i] !== 0);
-        if (check(hitDeck,curDeck)){
-        while(playerDeck.pos.length!==Deck.length) {playerDeck.setPos(Array(Deck.length).fill(0));}
-        playerDeck.setDeck(Deck);
-        playerDeck.setCurDeck(hitDeck);
+    const hit = () => {
+        if (playerDeck.playable) {
+            const pos = playerDeck.pos;
+            const curDeck = playerDeck.curDeck;
+            const Deck = playerDeck.Deck.filter((e, i) => pos[i] === 0);
+            const hitDeck = playerDeck.Deck.filter((e, i) => pos[i] !== 0);
+            if (check(hitDeck, curDeck)) {
+                console.log("Đánh bài");
+                playerDeck.setPos(Array(Deck.length).fill(0));
+                playerDeck.setDeck(Deck);
+                playerDeck.setCurDeck(hitDeck);
+            }
+            else {
+                alert("Đánh bài không hợp lệ!");
+            }
+            if (Deck.length === 0) alert('Win cmnr!');
         }
         else {
-            alert("Đánh bài không hợp lệ!");
+            playerDeck.setPos(Array(playerDeck.pos.length).fill(0));
+            alert("Chưa tới lượt của bạn!");
+            
         }
-        if (Deck.length===0) alert('Win cmnr!');
     }
-    
+
     return (
-        <image href="Button.svg" x={505} y={300} width={130}onClick={hit}></image>
+        <image href="Button.svg" x={505} y={300} width={130} onClick={hit}></image>
     )
 
 }

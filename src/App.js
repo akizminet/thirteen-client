@@ -35,6 +35,12 @@ const App = () => {
     socket.on('full',()=>{
       alert("Phòng đã đủ dân chơi!");
     });
+    socket.on('yourTurn',() => {
+      playerDeck.setPlayable(true);
+    });
+    socket.on('endTurn',()=>{
+      playerDeck.setPlayable(false);
+    });
   },[]);
 
     return (
